@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const User = require("../models/userModel");
+const Post = require("../models/postModel");
 
-/*get all users*/
+/*get all posts*/
 router.get("/", async (req, res) => {
     try {
-        const data = await User.find();
-        console.log('users fetched');
+        const data = await Post.find();
+        console.log('posts fetched');
         res.status(200).json(data); 
 
     } catch (error) {
@@ -16,12 +16,12 @@ router.get("/", async (req, res) => {
     }
 });
 
-/*get user with id*/
+/*get post with id*/
 router.get("/:id", async (req, res) => {
     try {
-        const userId = req.params.id;
-        const data = await User.findById(userId);
-        console.log('user fetched');
+        const postId = req.params.id;
+        const data = await Post.findById(postId);
+        console.log('post fetched');
         res.status(200).json(data); 
 
     } catch (error) {
@@ -30,13 +30,13 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-/*post a user*/
-router.post("/register", async (req, res) => {
+/*upload a post*/
+router.post("/add", async (req, res) => {
     try {
         const data = req.body;
-        const newUser = new User(data);
+        const newPost = new Post(data);
 
-        const response = await newUser.save();
+        const response = await newPost.save();
         console.log("user created");
         res.status(200).json(response);
 
