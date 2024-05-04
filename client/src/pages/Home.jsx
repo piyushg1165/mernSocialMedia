@@ -1,10 +1,13 @@
 import React from 'react'
 import Post from '../components/Post'
+import Layout from '../components/Layout'
 
 function Home() {
   return (
-    <div>Home
-      <Post/>
+    <div>
+      <Layout>
+        <Post/>
+      </Layout>
     </div>
     
   )
