@@ -1,6 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function SignUp() {
+  const [name, setName] = useState("Shivam");
+  const [email, setEmail] = useState("shivam@gmail.com");
+  const [gender, setGender] = useState("male");
+  const [bio, setBio] = useState("This is bio");
+  const [profilePic, setProfilePic] = useState("https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250");
+  const [location, setLocation] = useState("india");
+  const [password, setPassword] = useState("shivam");
+  const data = {
+    name,
+    email,
+    gender,
+    bio,
+    profilePic,
+    location,
+    password
+  }
+ const handleSubmit = () => {
+  axios.post('/http://localhost:3000/users/register', data)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+ }
   return (
     <>
    <div className="flex flex-col items-center justify-center h-screen">
@@ -28,7 +54,7 @@ function SignUp() {
       </select>
 
       <p className="text-gray-900 mt-4"> Already have an account? <a className="text-sm text-blue-500 -200 hover:underline mt-4" href="#">Login</a></p>
-      <button className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150" type="submit">Sign Up</button>
+      <button onClick={() => handleSubmit} className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150" type="submit">Sign Up</button>
     </form>
   </div>
 </div>
