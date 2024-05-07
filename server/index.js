@@ -2,7 +2,10 @@ const express = require("express");
 const app = express();
 const db = require("./db");
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send('hello there');

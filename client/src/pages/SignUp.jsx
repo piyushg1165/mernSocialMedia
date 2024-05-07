@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from "axios";
 
 function SignUp() {
-  const [name, setName] = useState("Shivam");
-  const [email, setEmail] = useState("shivam@gmail.com");
-  const [gender, setGender] = useState("male");
-  const [bio, setBio] = useState("This is bio");
-  const [profilePic, setProfilePic] = useState("https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250");
-  const [location, setLocation] = useState("india");
-  const [password, setPassword] = useState("shivam");
-  const data = {
-    name,
-    email,
-    gender,
-    bio,
-    profilePic,
-    location,
-    password
-  }
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [bio, setBio] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  const [location, setLocation] = useState("");
+  const [password, setPassword] = useState("");
+  
  const handleSubmit = () => {
-  axios.post('/http://localhost:3000/users/register', data)
+  console.log("submit");
+  axios.post('http://localhost:3000/users/register', 
+  {
+    name: "Shivam",
+    email: "shivam@gmail.com",
+    gender: "male",
+    bio: "this is bio",
+    profilePic: "https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250",
+    location: "india",
+    password: "shivam"
+  }
+  )
   .then(function (response) {
     console.log(response);
   })
@@ -54,7 +57,7 @@ function SignUp() {
       </select>
 
       <p className="text-gray-900 mt-4"> Already have an account? <a className="text-sm text-blue-500 -200 hover:underline mt-4" href="#">Login</a></p>
-      <button onClick={() => handleSubmit} className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150" type="submit">Sign Up</button>
+      <button onClick={handleSubmit} className="bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-indigo-600 hover:to-blue-600 transition ease-in-out duration-150" type='button'>Sign Up</button>
     </form>
   </div>
 </div>
